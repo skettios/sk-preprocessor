@@ -1,0 +1,3 @@
+#define OPENGL_FUNCTION_VARIABLES() \
+
+#define OPENGL_FUNCTION_LOAD(Func) \

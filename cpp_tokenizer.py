@@ -27,16 +27,13 @@ class CPPTokenizer:
         self._previous = None
         self._tokens = iter(pygments.lex(source, lexer))
 
-    def has_next(self):
+    def next(self):
         try:
             self._previous = self._current
             self._current = next(self._tokens)
+            return self._current[0], self._current[1]
         except StopIteration:
-            return False
-        return True
-
-    def next(self):
-        return self._current[0], self._current[1]
+            return None, None
 
     def prev(self):
         return self._current[0], self._current[1]

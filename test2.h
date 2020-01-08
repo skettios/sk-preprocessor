@@ -1,0 +1,12 @@
+#ifndef TEST2_H
+#define TEST2_H
+
+//Test Comment
+
+#define OPENGL_GENERATE_BEGIN()
+#define OPENGL_GENERATE_END()
+
+OPENGL_GENERATE_BEGIN();
+OPENGL_GENERATE_END();
+
+#endif //TEST2_H
