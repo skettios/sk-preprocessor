@@ -56,6 +56,25 @@ def generate_code(file_path):
         else:
             print(f"{value} = ({key})Func(\"{value}\"); \\",
                   file=new_header)
+    new_header.flush()
+    print(f"\n#define OPENGL_FUNCTION_POPULATE_TO_STRUCT(Variable) \\", file=new_header)
+    for index in range(len(gl_functions.items())):
+        key = list(gl_functions.keys())[index]
+        value = gl_functions[key]
+        if index == len(gl_functions.items()) - 1:
+            print(f"Variable.{value} = {value};", file=new_header)
+        else:
+            print(f"Variable.{value} = {value}; \\", file=new_header)
+    new_header.flush()
+    print(f"\n#define OPENGL_FUNCTION_POPULATE_FROM_STRUCT(Variable) \\",
+          file=new_header)
+    for index in range(len(gl_functions.items())):
+        key = list(gl_functions.keys())[index]
+        value = gl_functions[key]
+        if index == len(gl_functions.items()) - 1:
+            print(f"{value} = Variable.{value}", file=new_header)
+        else:
+            print(f"{value} = Variable.{value}; \\", file=new_header)
     new_header.close()
 
     print(generated_file_name)
